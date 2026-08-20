@@ -3,231 +3,710 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070b16">
+  <meta name="theme-color" content="#060914">
+  <meta name="description" content="Neon Nexus — futuristic gaming hub">
   <title>Neon Nexus</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <span>N</span> NEON NEXUS
-  </div>
+<div id="toast"></div>
 
-  <nav>
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('games')">Games</button>
-    <button onclick="showPage('leaderboard')">Leaderboard</button>
-    <button onclick="showPage('profile')">Profile</button>
+<header class="navbar">
+  <a class="logo" href="#" onclick="showPage('home'); return false;">
+    <span class="logo-box">N</span>
+    <span>NEON <b>NEXUS</b></span>
+  </a>
+
+  <nav class="desktop-nav">
+    <button onclick="showPage('home')">HOME</button>
+    <button onclick="showPage('games')">GAMES</button>
+    <button onclick="showPage('leaderboard')">LEADERBOARD</button>
+    <button onclick="showPage('dashboard')">DASHBOARD</button>
   </nav>
 
-  <button class="login" onclick="showPage('login')">SIGN IN</button>
+  <div class="nav-right">
+    <button class="notification" onclick="showToast('No new notifications')">♢</button>
+    <button class="nav-profile" onclick="showPage('profile')">
+      <span id="navAvatar">G</span>
+      <span id="navName">GUEST</span>
+    </button>
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+  </div>
 </header>
+
+<div id="mobileMenu" class="mobile-menu">
+  <button onclick="showPage('home'); toggleMenu()">HOME</button>
+  <button onclick="showPage('games'); toggleMenu()">GAMES</button>
+  <button onclick="showPage('leaderboard'); toggleMenu()">LEADERBOARD</button>
+  <button onclick="showPage('dashboard'); toggleMenu()">DASHBOARD</button>
+  <button onclick="showPage('profile'); toggleMenu()">PROFILE</button>
+  <button onclick="showPage('settings'); toggleMenu()">SETTINGS</button>
+</div>
 
 <main>
 
-  <!-- HOME -->
-  <section id="home" class="page active">
-    <div class="hero">
-      <div>
-        <p class="status">● SYSTEM ONLINE</p>
+<!-- ================= HOME ================= -->
 
-        <h1>
-          ENTER THE
-          <span>NEON NEXUS.</span>
-        </h1>
+<section id="home" class="page active">
 
-        <p class="description">
-          Discover games, compete with players, earn XP
-          and climb the leaderboard.
-        </p>
+  <div class="hero">
 
-        <button class="primary" onclick="showPage('games')">
-          EXPLORE GAMES →
+    <div class="hero-content">
+
+      <div class="system-status">
+        <span></span> SYSTEM ONLINE
+      </div>
+
+      <h1>
+        ENTER THE
+        <strong>NEON NEXUS.</strong>
+      </h1>
+
+      <p class="hero-description">
+        Your futuristic gaming command center.
+        Discover games, earn XP, compete with players
+        and climb the Nexus leaderboard.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="primary-btn" onclick="showPage('games')">
+          EXPLORE GAMES <span>→</span>
         </button>
 
-        <button class="secondary" onclick="showPage('login')">
+        <button class="secondary-btn" onclick="showPage('login')">
           CREATE ACCOUNT
         </button>
       </div>
 
-      <div class="orb">
-        <div class="core">N</div>
+      <div class="hero-mini-stats">
+        <div>
+          <b>36K+</b>
+          <span>PLAYERS</span>
+        </div>
+
+        <div>
+          <b>128</b>
+          <span>GAMES</span>
+        </div>
+
+        <div>
+          <b>4.8★</b>
+          <span>RATING</span>
+        </div>
       </div>
+
     </div>
 
-    <div class="stats">
-      <div>
-        <b>36K+</b>
-        <small>PLAYERS</small>
+    <div class="hero-visual">
+
+      <div class="orb orbit-one"></div>
+      <div class="orb orbit-two"></div>
+
+      <div class="core">
+        <span>N</span>
       </div>
 
-      <div>
-        <b>128</b>
-        <small>GAMES</small>
+      <div class="floating-card card-one">
+        <span>⚡</span>
+        <div>
+          <b>NEON ARENA</b>
+          <small>12.4K PLAYERS</small>
+        </div>
       </div>
 
-      <div>
-        <b>4.8★</b>
-        <small>RATING</small>
+      <div class="floating-card card-two">
+        <span>♛</span>
+        <div>
+          <b>RANK #01</b>
+          <small>9,820 XP</small>
+        </div>
       </div>
 
-      <div>
-        <b>99.9%</b>
-        <small>UPTIME</small>
-      </div>
-    </div>
-  </section>
-
-  <!-- GAMES -->
-  <section id="games" class="page">
-
-    <div class="heading">
-      <p class="status">DISCOVER</p>
-      <h2>GAME LIBRARY</h2>
-      <p>Choose your next adventure.</p>
     </div>
 
-    <div class="filters">
-      <button onclick="filterGames('all')">ALL</button>
-      <button onclick="filterGames('action')">ACTION</button>
-      <button onclick="filterGames('racing')">RACING</button>
-      <button onclick="filterGames('strategy')">STRATEGY</button>
+  </div>
+
+  <div class="section">
+
+    <div class="section-heading">
+      <div>
+        <span class="section-line"></span>
+        <h2>TRENDING NOW</h2>
+      </div>
+
+      <button onclick="showPage('games')">VIEW ALL →</button>
     </div>
 
-    <div id="gameGrid" class="game-grid">
+    <div class="game-grid">
 
-      <article class="game-card" data-type="action">
-        <div class="game-art cyan">⚡</div>
+      <article class="game-card">
+        <div class="game-image cyan-bg">
+          <span>⚡</span>
+          <div class="game-rating">★ 9.4</div>
+          <button class="favorite" onclick="favoriteGame(this)">♡</button>
+        </div>
+
+        <div class="game-details">
+          <span class="game-tag">ACTION</span>
+          <h3>NEON ARENA</h3>
+          <p>Fast cyberpunk arena combat.</p>
+
+          <div class="game-meta">
+            <span>● 12.4K</span>
+            <button onclick="playGame('Neon Arena')">PLAY →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <div class="game-image purple-bg">
+          <span>🌀</span>
+          <div class="game-rating">★ 9.1</div>
+          <button class="favorite" onclick="favoriteGame(this)">♡</button>
+        </div>
+
+        <div class="game-details">
+          <span class="game-tag purple-text">ADVENTURE</span>
+          <h3>PIXEL RIFT</h3>
+          <p>Explore strange digital worlds.</p>
+
+          <div class="game-meta">
+            <span>● 8.7K</span>
+            <button onclick="playGame('Pixel Rift')">PLAY →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <div class="game-image orange-bg">
+          <span>🚀</span>
+          <div class="game-rating">★ 8.9</div>
+          <button class="favorite" onclick="favoriteGame(this)">♡</button>
+        </div>
+
+        <div class="game-details">
+          <span class="game-tag orange-text">RACING</span>
+          <h3>SKYBOUND</h3>
+          <p>Race above the neon megacity.</p>
+
+          <div class="game-meta">
+            <span>● 6.2K</span>
+            <button onclick="playGame('Skybound')">PLAY →</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= GAMES ================= -->
+
+<section id="games" class="page">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">DISCOVER</span>
+      <h1>GAME LIBRARY</h1>
+      <p>Find your next obsession.</p>
+    </div>
+
+    <div class="library-count">
+      <b>128</b>
+      <span>GAMES</span>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+
+    <button class="filter active" onclick="filterGames('all', this)">
+      ALL
+    </button>
+
+    <button class="filter" onclick="filterGames('action', this)">
+      ACTION
+    </button>
+
+    <button class="filter" onclick="filterGames('adventure', this)">
+      ADVENTURE
+    </button>
+
+    <button class="filter" onclick="filterGames('racing', this)">
+      RACING
+    </button>
+
+    <button class="filter" onclick="filterGames('strategy', this)">
+      STRATEGY
+    </button>
+
+  </div>
+
+  <div class="game-grid library-grid">
+
+    <article class="game-card library-card" data-category="action">
+      <div class="game-image cyan-bg">
+        <span>⚡</span>
+        <div class="game-rating">★ 9.4</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag">ACTION</span>
         <h3>NEON ARENA</h3>
-        <p>Fast cyberpunk arena combat.</p>
-        <button onclick="playGame('Neon Arena')">PLAY NOW</button>
-      </article>
+        <p>Cyberpunk arena combat.</p>
 
-      <article class="game-card" data-type="racing">
-        <div class="game-art orange">🚀</div>
+        <button class="wide-play" onclick="playGame('Neon Arena')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
+
+    <article class="game-card library-card" data-category="adventure">
+      <div class="game-image purple-bg">
+        <span>🌀</span>
+        <div class="game-rating">★ 9.1</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag purple-text">ADVENTURE</span>
+        <h3>PIXEL RIFT</h3>
+        <p>Explore mysterious digital worlds.</p>
+
+        <button class="wide-play" onclick="playGame('Pixel Rift')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
+
+    <article class="game-card library-card" data-category="racing">
+      <div class="game-image orange-bg">
+        <span>🚀</span>
+        <div class="game-rating">★ 8.9</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag orange-text">RACING</span>
         <h3>SKYBOUND</h3>
-        <p>Race through a futuristic city.</p>
-        <button onclick="playGame('Skybound')">PLAY NOW</button>
-      </article>
+        <p>Futuristic high-speed racing.</p>
 
-      <article class="game-card" data-type="strategy">
-        <div class="game-art purple">♟</div>
-        <h3>CYBER CHESS</h3>
-        <p>Classic strategy. Futuristic style.</p>
-        <button onclick="playGame('Cyber Chess')">PLAY NOW</button>
-      </article>
+        <button class="wide-play" onclick="playGame('Skybound')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
 
-      <article class="game-card" data-type="action">
-        <div class="game-art green">☄</div>
+    <article class="game-card library-card" data-category="action">
+      <div class="game-image green-bg">
+        <span>☄</span>
+        <div class="game-rating">★ 8.7</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag green-text">ACTION</span>
         <h3>VOID RUNNER</h3>
         <p>Survive endless enemy waves.</p>
-        <button onclick="playGame('Void Runner')">PLAY NOW</button>
-      </article>
+
+        <button class="wide-play" onclick="playGame('Void Runner')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
+
+    <article class="game-card library-card" data-category="strategy">
+      <div class="game-image blue-bg">
+        <span>♟</span>
+        <div class="game-rating">★ 8.8</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag blue-text">STRATEGY</span>
+        <h3>CYBER CHESS</h3>
+        <p>Classic strategy, futuristic style.</p>
+
+        <button class="wide-play" onclick="playGame('Cyber Chess')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
+
+    <article class="game-card library-card" data-category="adventure">
+      <div class="game-image pink-bg">
+        <span>✦</span>
+        <div class="game-rating">★ 8.6</div>
+      </div>
+
+      <div class="game-details">
+        <span class="game-tag pink-text">ADVENTURE</span>
+        <h3>STARFORGE</h3>
+        <p>Build a colony among the stars.</p>
+
+        <button class="wide-play" onclick="playGame('Starforge')">
+          PLAY NOW →
+        </button>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="page">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">COMMAND CENTER</span>
+      <h1 id="dashboardGreeting">WELCOME, GUEST</h1>
+      <p>Your gaming progress at a glance.</p>
+    </div>
+
+    <div class="level-box">
+      <span>LEVEL</span>
+      <b id="dashboardLevel">1</b>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+
+    <div class="dashboard-panel progress-panel">
+
+      <div class="panel-heading">
+        <b>LEVEL PROGRESS</b>
+        <span id="xpProgressText">0 / 1000 XP</span>
+      </div>
+
+      <div class="progress-bar">
+        <span id="xpBar"></span>
+      </div>
+
+      <div class="progress-bottom">
+        <span id="currentXP">0 XP</span>
+        <span>NEXT LEVEL</span>
+      </div>
+
+      <div class="big-progress" id="progressPercent">
+        0%
+      </div>
 
     </div>
-  </section>
 
-  <!-- LEADERBOARD -->
-  <section id="leaderboard" class="page">
+    <div class="dashboard-panel">
 
-    <div class="heading">
-      <p class="status">COMPETE</p>
-      <h2>LEADERBOARD</h2>
-    </div>
-
-    <div class="leaderboard">
-
-      <div class="player first">
-        <strong>1</strong>
-        <span>⚡ ShadowByte</span>
-        <b>9820 XP</b>
+      <div class="panel-heading">
+        <b>QUICK STATS</b>
       </div>
 
-      <div class="player">
-        <strong>2</strong>
-        <span>🔥 NovaX</span>
-        <b>8710 XP</b>
-      </div>
+      <div class="quick-stats">
 
-      <div class="player">
-        <strong>3</strong>
-        <span>💀 PixelKing</span>
-        <b>7920 XP</b>
-      </div>
+        <div>
+          <strong id="matchCount">0</strong>
+          <small>MATCHES</small>
+        </div>
 
-      <div class="player">
-        <strong>4</strong>
-        <span>🚀 Circuit</span>
-        <b>6410 XP</b>
+        <div>
+          <strong id="winCount">0</strong>
+          <small>WINS</small>
+        </div>
+
+        <div>
+          <strong>18h</strong>
+          <small>PLAY TIME</small>
+        </div>
+
       </div>
 
     </div>
-  </section>
 
-  <!-- PROFILE -->
-  <section id="profile" class="page">
+  </div>
 
-    <div class="profile">
-      <div class="avatar">A</div>
+  <div class="section">
 
+    <div class="section-heading">
       <div>
-        <p class="status">PLAYER PROFILE</p>
-        <h2 id="username">GUEST</h2>
-        <p>Level <span id="level">1</span></p>
+        <span class="section-line"></span>
+        <h2>RECENT ACTIVITY</h2>
       </div>
     </div>
 
-    <div class="dashboard">
+    <div class="activity-list" id="activityList">
 
-      <div class="panel">
-        <small>XP</small>
-        <h2 id="xp">0</h2>
-      </div>
-
-      <div class="panel">
-        <small>MATCHES</small>
-        <h2>0</h2>
-      </div>
-
-      <div class="panel">
-        <small>WINS</small>
-        <h2>0</h2>
+      <div class="activity">
+        <span>⚡</span>
+        <div>
+          <b>Welcome to Neon Nexus</b>
+          <small>Just now</small>
+        </div>
       </div>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- LOGIN -->
-  <section id="login" class="page">
+</section>
 
-    <div class="auth">
 
-      <p class="status">WELCOME BACK</p>
-      <h2>SIGN IN</h2>
+<!-- ================= LEADERBOARD ================= -->
 
-      <input id="loginName" placeholder="Username">
+<section id="leaderboard" class="page">
 
-      <input id="loginEmail" type="email" placeholder="Email">
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">COMPETE</span>
+      <h1>LEADERBOARD</h1>
+      <p>The strongest players in the Nexus.</p>
+    </div>
+  </div>
 
-      <input id="loginPassword" type="password" placeholder="Password">
+  <div class="leaderboard">
 
-      <button class="primary full" onclick="login()">
+    <div class="leader-row top">
+      <strong>01</strong>
+      <span class="rank-icon">⚡</span>
+      <div>
+        <b>ShadowByte</b>
+        <small>Level 32</small>
+      </div>
+      <strong>9,820 XP</strong>
+    </div>
+
+    <div class="leader-row">
+      <strong>02</strong>
+      <span class="rank-icon">🔥</span>
+      <div>
+        <b>NovaX</b>
+        <small>Level 28</small>
+      </div>
+      <strong>8,710 XP</strong>
+    </div>
+
+    <div class="leader-row">
+      <strong>03</strong>
+      <span class="rank-icon">💀</span>
+      <div>
+        <b>PixelKing</b>
+        <small>Level 25</small>
+      </div>
+      <strong>7,920 XP</strong>
+    </div>
+
+    <div class="leader-row">
+      <strong>04</strong>
+      <span class="rank-icon">🚀</span>
+      <div>
+        <b>Circuit</b>
+        <small>Level 22</small>
+      </div>
+      <strong>6,410 XP</strong>
+    </div>
+
+    <div class="leader-row">
+      <strong>05</strong>
+      <span class="rank-icon">✦</span>
+      <div>
+        <b>NightCore</b>
+        <small>Level 19</small>
+      </div>
+      <strong>5,890 XP</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section id="profile" class="page">
+
+  <div class="profile-header">
+
+    <div class="profile-avatar" id="profileAvatar">
+      G
+    </div>
+
+    <div>
+      <span class="eyebrow">PLAYER PROFILE</span>
+      <h1 id="profileName">GUEST</h1>
+      <p id="profileEmail">Not signed in</p>
+    </div>
+
+    <button class="secondary-btn edit-button" onclick="showPage('settings')">
+      EDIT PROFILE
+    </button>
+
+  </div>
+
+  <div class="profile-grid">
+
+    <div class="dashboard-panel">
+      <span class="eyebrow">LEVEL</span>
+      <h2 id="profileLevel">1</h2>
+      <p>Current level</p>
+    </div>
+
+    <div class="dashboard-panel">
+      <span class="eyebrow">XP</span>
+      <h2 id="profileXP">0</h2>
+      <p>Total experience</p>
+    </div>
+
+    <div class="dashboard-panel">
+      <span class="eyebrow">RANK</span>
+      <h2>NEON</h2>
+      <p>Current division</p>
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <div class="section-heading">
+      <div>
+        <span class="section-line"></span>
+        <h2>ACHIEVEMENTS</h2>
+      </div>
+    </div>
+
+    <div class="achievement-grid">
+
+      <div class="achievement">
+        <span>⚡</span>
+        <b>FIRST STRIKE</b>
+        <small>Play your first game</small>
+      </div>
+
+      <div class="achievement locked">
+        <span>♛</span>
+        <b>RISING STAR</b>
+        <small>Reach Level 10</small>
+      </div>
+
+      <div class="achievement locked">
+        <span>✦</span>
+        <b>ELITE</b>
+        <small>Reach Level 25</small>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="page">
+
+  <div class="auth-card">
+
+    <span class="eyebrow">WELCOME TO THE NEXUS</span>
+
+    <h1>SIGN IN</h1>
+
+    <p>
+      Sign in to save your progress and access your dashboard.
+    </p>
+
+    <form onsubmit="login(event)">
+
+      <label>
+        USERNAME
+        <input id="loginUsername" required placeholder="Enter username">
+      </label>
+
+      <label>
+        EMAIL
+        <input id="loginEmail" type="email" required placeholder="you@example.com">
+      </label>
+
+      <label>
+        PASSWORD
+        <input id="loginPassword" type="password" required placeholder="••••••••">
+      </label>
+
+      <button class="primary-btn full-btn">
         SIGN IN →
       </button>
 
-      <p id="loginMessage"></p>
+    </form>
 
+    <p class="auth-switch">
+      Demo account system —
+      data is stored locally in your browser.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="page">
+
+  <div class="page-header">
+    <div>
+      <span class="eyebrow">CONFIGURATION</span>
+      <h1>SETTINGS</h1>
+      <p>Customize your Nexus experience.</p>
+    </div>
+  </div>
+
+  <div class="settings-list">
+
+    <div class="setting-row">
+      <div>
+        <b>Sound Effects</b>
+        <small>Interface sound effects</small>
+      </div>
+
+      <button class="toggle active" onclick="toggleSetting(this)">
+        <span></span>
+      </button>
     </div>
 
-  </section>
+    <div class="setting-row">
+      <div>
+        <b>Motion Effects</b>
+        <small>Animated interface effects</small>
+      </div>
+
+      <button class="toggle active" onclick="toggleSetting(this)">
+        <span></span>
+      </button>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <b>Public Profile</b>
+        <small>Allow other players to view your profile</small>
+      </div>
+
+      <button class="toggle active" onclick="toggleSetting(this)">
+        <span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <button class="danger-button" onclick="logout()">
+    SIGN OUT
+  </button>
+
+</section>
 
 </main>
 
 <footer>
-  NEON NEXUS © 2026
+  <div class="footer-logo">NEON NEXUS</div>
+  <p>© 2026 Neon Nexus. Built for the next generation.</p>
 </footer>
 
 <script src="script.js"></script>
