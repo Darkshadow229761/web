@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b16">
+  <title>Neon Nexus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <span>N</span> NEON NEXUS
+  </div>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('games')">Games</button>
+    <button onclick="showPage('leaderboard')">Leaderboard</button>
+    <button onclick="showPage('profile')">Profile</button>
+  </nav>
+
+  <button class="login" onclick="showPage('login')">SIGN IN</button>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+    <div class="hero">
+      <div>
+        <p class="status">● SYSTEM ONLINE</p>
+
+        <h1>
+          ENTER THE
+          <span>NEON NEXUS.</span>
+        </h1>
+
+        <p class="description">
+          Discover games, compete with players, earn XP
+          and climb the leaderboard.
+        </p>
+
+        <button class="primary" onclick="showPage('games')">
+          EXPLORE GAMES →
+        </button>
+
+        <button class="secondary" onclick="showPage('login')">
+          CREATE ACCOUNT
+        </button>
+      </div>
+
+      <div class="orb">
+        <div class="core">N</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div>
+        <b>36K+</b>
+        <small>PLAYERS</small>
+      </div>
+
+      <div>
+        <b>128</b>
+        <small>GAMES</small>
+      </div>
+
+      <div>
+        <b>4.8★</b>
+        <small>RATING</small>
+      </div>
+
+      <div>
+        <b>99.9%</b>
+        <small>UPTIME</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section id="games" class="page">
+
+    <div class="heading">
+      <p class="status">DISCOVER</p>
+      <h2>GAME LIBRARY</h2>
+      <p>Choose your next adventure.</p>
+    </div>
+
+    <div class="filters">
+      <button onclick="filterGames('all')">ALL</button>
+      <button onclick="filterGames('action')">ACTION</button>
+      <button onclick="filterGames('racing')">RACING</button>
+      <button onclick="filterGames('strategy')">STRATEGY</button>
+    </div>
+
+    <div id="gameGrid" class="game-grid">
+
+      <article class="game-card" data-type="action">
+        <div class="game-art cyan">⚡</div>
+        <h3>NEON ARENA</h3>
+        <p>Fast cyberpunk arena combat.</p>
+        <button onclick="playGame('Neon Arena')">PLAY NOW</button>
+      </article>
+
+      <article class="game-card" data-type="racing">
+        <div class="game-art orange">🚀</div>
+        <h3>SKYBOUND</h3>
+        <p>Race through a futuristic city.</p>
+        <button onclick="playGame('Skybound')">PLAY NOW</button>
+      </article>
+
+      <article class="game-card" data-type="strategy">
+        <div class="game-art purple">♟</div>
+        <h3>CYBER CHESS</h3>
+        <p>Classic strategy. Futuristic style.</p>
+        <button onclick="playGame('Cyber Chess')">PLAY NOW</button>
+      </article>
+
+      <article class="game-card" data-type="action">
+        <div class="game-art green">☄</div>
+        <h3>VOID RUNNER</h3>
+        <p>Survive endless enemy waves.</p>
+        <button onclick="playGame('Void Runner')">PLAY NOW</button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="leaderboard" class="page">
+
+    <div class="heading">
+      <p class="status">COMPETE</p>
+      <h2>LEADERBOARD</h2>
+    </div>
+
+    <div class="leaderboard">
+
+      <div class="player first">
+        <strong>1</strong>
+        <span>⚡ ShadowByte</span>
+        <b>9820 XP</b>
+      </div>
+
+      <div class="player">
+        <strong>2</strong>
+        <span>🔥 NovaX</span>
+        <b>8710 XP</b>
+      </div>
+
+      <div class="player">
+        <strong>3</strong>
+        <span>💀 PixelKing</span>
+        <b>7920 XP</b>
+      </div>
+
+      <div class="player">
+        <strong>4</strong>
+        <span>🚀 Circuit</span>
+        <b>6410 XP</b>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="page">
+
+    <div class="profile">
+      <div class="avatar">A</div>
+
+      <div>
+        <p class="status">PLAYER PROFILE</p>
+        <h2 id="username">GUEST</h2>
+        <p>Level <span id="level">1</span></p>
+      </div>
+    </div>
+
+    <div class="dashboard">
+
+      <div class="panel">
+        <small>XP</small>
+        <h2 id="xp">0</h2>
+      </div>
+
+      <div class="panel">
+        <small>MATCHES</small>
+        <h2>0</h2>
+      </div>
+
+      <div class="panel">
+        <small>WINS</small>
+        <h2>0</h2>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- LOGIN -->
+  <section id="login" class="page">
+
+    <div class="auth">
+
+      <p class="status">WELCOME BACK</p>
+      <h2>SIGN IN</h2>
+
+      <input id="loginName" placeholder="Username">
+
+      <input id="loginEmail" type="email" placeholder="Email">
+
+      <input id="loginPassword" type="password" placeholder="Password">
+
+      <button class="primary full" onclick="login()">
+        SIGN IN →
+      </button>
+
+      <p id="loginMessage"></p>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  NEON NEXUS © 2026
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
